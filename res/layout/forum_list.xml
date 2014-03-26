@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bisque"
+    android:orientation="vertical" >
+	<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    	<TextView
+    	    android:id="@+id/header_title"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginBottom="10.0dip"
+    	    android:background="@drawable/quanzi_title_bg"
+    	    android:paddingBottom="5.0dip"
+    	    android:paddingLeft="5.0dip"
+    	    android:paddingTop="5.0dip"
+    	    android:text="@string/msg_noname"
+    	    android:textColor="#ff222222"
+    	    android:textSize="16.0sp" />
+
+	</LinearLayout>
+	<com.handmark.pulltorefresh.library.PullToRefreshListView
+	    android:id="@+id/replyList"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:cacheColorHint="#00000000"
+	    android:divider="#19000000"
+	    android:dividerHeight="4dp"
+	    android:fadingEdge="none"
+	    android:fastScrollEnabled="false"
+	    android:footerDividersEnabled="false"
+	    android:headerDividersEnabled="false"
+	    android:smoothScrollbar="true" />
+
+</LinearLayout>

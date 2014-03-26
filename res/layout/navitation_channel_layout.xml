@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#2b2b2b">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/left_nav_title_bg"
+        android:padding="5dp" >
+    		
+        	<TextView
+        	    style="@style/NavigationTextStyle"
+        	    android:layout_width="match_parent"
+        	    android:layout_height="wrap_content"
+        	    android:layout_centerVertical="true"
+        	    android:layout_marginLeft="10dp"
+        	    android:text="@string/app_name"
+        	    android:textSize="20sp" />
+        
+    </RelativeLayout>
+                
+    <LinearLayout 
+         android:orientation="vertical" 
+         android:layout_width="fill_parent" 
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+         
+    	<RadioGroup 
+			android:id="@+id/nav_radiogroup"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content">
+
+			<RadioButton
+			    android:id="@+id/nav_home"
+			    style="@style/NavRadioStyle"
+			    android:layout_marginTop="10dp"
+			    android:checked="true"
+			    android:drawableLeft="@drawable/icon_toutiao"
+			    android:text="@string/main_home"
+			    android:textColor="@color/gainsboro" />
+			
+			<RadioButton
+			    android:id="@+id/nav_person"
+			    style="@style/NavRadioStyle"
+			    android:layout_marginTop="10dp"
+			    android:checked="true"
+			    android:drawableLeft="@drawable/icon_yule"
+			    android:text="@string/main_person"
+			    android:textColor="@color/gainsboro" />
+			<RadioButton
+			    android:id="@+id/nav_settings"
+			    style="@style/NavRadioStyle"
+			    android:layout_marginTop="10dp"
+			    android:drawableLeft="@drawable/icon_blog"
+			    android:text="@string/main_settings"
+			    android:textColor="@color/gainsboro" />
+			
+			</RadioGroup>	
+			
+          	<!-- 添加内容 -->       
+	   		
+			
+      </LinearLayout>    
+</LinearLayout>

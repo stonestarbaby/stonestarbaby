@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bisque"
+    android:orientation="vertical"
+    tools:context=".WeChatActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bg" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/chatTitle"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+  
+    </RelativeLayout>  
+
+    <ListView
+        android:id="@+id/MainList"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.25"
+        android:clickable="false"
+        android:cacheColorHint="#00000000"
+        android:divider="#ffffff" >
+  
+    </ListView>  
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tag_btn_bg4"
+        android:gravity="bottom"
+        android:padding="5dp" >
+  
+        <EditText
+            android:id="@+id/InputBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/black" >
+  
+            <requestFocus />  
+        </EditText>  
+
+        <Button
+            android:id="@+id/BtnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_send"
+            android:minHeight="32dip"
+            android:minWidth="48dip"
+            android:padding="5dp"
+            android:text="@string/Send"
+            android:textColor="#ffffff" />
+  
+    </LinearLayout>  
+</LinearLayout>  

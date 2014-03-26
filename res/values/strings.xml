@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">母婴健康</string>
+	<string name="login_str">登录</string>
+	<string name="login_des">使用社区账号登录</string>
+	
+	<string name="register_str">注册</string>
+	<string name="register_des">如果没有社区账号，请注册！</string>
+	<string name="register_tip">提示 \n填写邮箱方便您找回密码.</string>
+	<string name="register_sex">性别</string>
+	<string name="register_sex_male">男</string>
+	<string name="register_sex_female">女</string>
+	<string name="register_birthday">生日</string>
+	<string name="register_birthday_input">点击选择生日</string>
+	<string name="register_mail">邮箱</string>
+	<string name="register_nickname">昵称</string>
+	<string name="register_password">密码</string>
+	<string name="register_mail_input">请输入邮箱</string>
+	<string name="register_nickname_input">请输入昵称</string>
+	<string name="register_password_input">请输入密码</string>
+	
+	<string name="pass_hint">密码（请输入123456）</string>
+	<string name="forget">忘记密码?</string>
+	<string name="login_wrong_title">登录错误</string>
+	<string name="login_wrong_des">社区账号或密码不能为空，请填写完整登录。</string>
+	<string name="login_fail_title">登录失败</string>
+	<string name="login_fail_des">用户名或密码不正确，请检查重新输入再登录。</string>
+	
+	<string name="net_wrong_title">网络连接错误</string>
+	<string name="net_wrong_des">网络连接错误，响应不正确，请连接网络，重新操作。</string>
+	
+	<string name="msg_noname">用户名不存在！！</string>
+	<string name="msg_nameexist">用户名已存在！！</string>
+	<string name="msg_fail_register">注册失败，网络不稳定，重新注册！</string>
+	<string name="msg_wrongpassword">密码不正确！！</string>
+	
+	<string name="load_logining">正在登录</string>
+	<string name="load_registering">正在注册</string>
+	<string name="main_settings">设置</string>
+	<string name="main_knowtips">知识</string>
+	<string name="main_experts">专家在线</string>
+	<string name="main_motion">心情</string>
+	<string name="main_shop">商城</string>
+	<string name="main_store">收藏</string>
+	<string name="main_share">分享</string>
+	<string name="main_tool">小工具</string>
+	<string name="main_forums">圈子</string>
+	<string name="main_home">主页</string>
+	<string name="Send">发送</string>
+	<string name="Sending">发送&#8230;</string>
+	<string name="chatTitle">聊天</string>
+	<string name="shareContent">欢迎使用母婴健康应用，快推荐给朋友吧。</string>
+	<string name="share">分享</string>
+	<string name="shareSel">请选择应用分享</string>
+	<string name="home">首页</string>
+	<string name="nav_fourm">圈子</string>
+	<string name="main_person">账户</string>
+</resources>

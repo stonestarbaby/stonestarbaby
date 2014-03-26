@@ -1,0 +1,83 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3375), pid=5152, tid=6880
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 6.0_24-b07
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (19.1-b02 mixed mode windows-amd64 compressed oops)
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000003fc000):  JavaThread "Unknown thread" [_thread_in_vm, id=6880, stack(0x00000000026d0000,0x00000000027d0000)]
+
+Stack: [0x00000000026d0000,0x00000000027d0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000003fc000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=6880, stack(0x00000000026d0000,0x00000000027d0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x0000000000400000 - 0x000000000042e000 	C:\opt\java\bin\javaw.exe
+0x0000000077760000 - 0x000000007790a000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x0000000077640000 - 0x000000007775f000 	C:\WINDOWS\system32\kernel32.dll
+0x000007fefdee0000 - 0x000007fefdf4b000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x0000000074f80000 - 0x0000000075007000 	C:\WINDOWS\System32\SYSFER.DLL
+0x000007feff990000 - 0x000007feffa6b000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x000007fefe240000 - 0x000007fefe2df000 	C:\WINDOWS\system32\msvcrt.dll
+0x000007fefe2e0000 - 0x000007fefe2ff000 	C:\WINDOWS\SYSTEM32\sechost.dll
+0x000007fefdfd0000 - 0x000007fefe0fd000 	C:\WINDOWS\system32\RPCRT4.dll
+0x0000000077540000 - 0x000000007763a000 	C:\WINDOWS\system32\USER32.dll
+0x000007fefe100000 - 0x000007fefe167000 	C:\WINDOWS\system32\GDI32.dll
+0x000007feff6b0000 - 0x000007feff6be000 	C:\WINDOWS\system32\LPK.dll
+0x000007fefe170000 - 0x000007fefe239000 	C:\WINDOWS\system32\USP10.dll
+0x000007fefdfa0000 - 0x000007fefdfce000 	C:\WINDOWS\system32\IMM32.DLL
+0x000007fefe4e0000 - 0x000007fefe5e9000 	C:\WINDOWS\system32\MSCTF.dll
+0x000000006d890000 - 0x000000006df94000 	C:\opt\java\jre\bin\server\jvm.dll
+0x000007fefb800000 - 0x000007fefb83b000 	C:\WINDOWS\system32\WINMM.dll
+0x000000006d800000 - 0x000000006d80e000 	C:\opt\java\jre\bin\verify.dll
+0x000000006d450000 - 0x000000006d477000 	C:\opt\java\jre\bin\java.dll
+0x000000006d3b0000 - 0x000000006d3ba000 	C:\opt\java\jre\bin\hpi.dll
+0x0000000077930000 - 0x0000000077937000 	C:\WINDOWS\system32\PSAPI.DLL
+0x000000006d850000 - 0x000000006d862000 	C:\opt\java\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=GBK -Xbootclasspath:C:\Users\jyang10\study\adt-bundle-windows-x86_64-20131030\adt-bundle-windows-x86_64-20131030\sdk\platforms\android-14\android.jar 
+java_command: BabyUtils
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\opt\java
+PATH=C:/opt/java/bin/../jre/bin/server;C:/opt/java/bin/../jre/bin;C:/opt/java/bin/../jre/lib/amd64;C:\Perl64\site\bin;C:\Perl64\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft Application Virtualization Client;C:\opt\java\bin;C:\opt\apache-ant-1.8.1\bin;C:\opt\instantclient_10_2\bin;C:\opt\apache-maven-3.0.4\bin;C:\Program Files\Perforce;C:\Program Files\Common Files\Hitachi ID\;C:\Program Files\TortoiseGit\bin;C:\Users\jyang10\Downloads\tesseract-ocr-setup-3.02.02\tessdata;C:\Users\jyang10\Downloads\tesseract-ocr-3.01-win32-portable\Tesseract-ocr;C:\Users\jyang10\Downloads\Asprise-OCR-Java-Windows_Vista_64bit-4.0;C:\Users\jyang10\study\adt-bundle-windows-x86_64-20131030\adt-bundle-windows-x86_64-20131030\eclipse;
+USERNAME=jyang10
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 Build 7601 Service Pack 1
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 8342004k(929076k free), swap 16682152k(7390352k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (19.1-b02) for windows-amd64 JRE (1.6.0_24-b07), built on Feb  2 2011 16:25:45 by "java_re" with MS VC++ 8.0 (VS2005)
+
+time: Tue Mar 11 19:33:42 2014
+elapsed time: 0 seconds
+
