@@ -12,6 +12,7 @@ import com.yangjun.baby.LogFactory;
 import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.activity.LoginMainActivity;
+import com.yangjun.baby.activity.PersonActivity;
 import com.yangjun.baby.activity.RegisterActivity;
 import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.entity.ChatInfo;
@@ -32,7 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class PersonFragment extends CommonFragment{
+public class LoginFragment extends CommonFragment{
 	
 	private static final CommonLog log = LogFactory.createLog();
 	private EditText eUser;
@@ -50,18 +51,18 @@ public class PersonFragment extends CommonFragment{
 				}
 				String res=msg.getData().getString(BabyConstants.BUN_H_LOGIN);
 				if(res==""){
-					new AlertDialog.Builder(PersonFragment.this.getActivity()).setIcon(R.drawable.login_error)
+					new AlertDialog.Builder(LoginFragment.this.getActivity()).setIcon(R.drawable.login_error)
 					.setTitle(R.string.net_wrong_title).setMessage(R.string.net_wrong_des)
 					.create().show();
 					return ;
 				}else{
 					if(BabyConstants.MSG_NONAME.equals(res)){
-						Toast toast=Toast.makeText(PersonFragment.this.getActivity(), R.string.msg_noname, Toast.LENGTH_SHORT);
+						Toast toast=Toast.makeText(LoginFragment.this.getActivity(), R.string.msg_noname, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
 						
 					}else if(BabyConstants.MSG_WRONGPASSWORD.equals(res)){
-						Toast toast=Toast.makeText(PersonFragment.this.getActivity(), R.string.msg_wrongpassword, Toast.LENGTH_SHORT);
+						Toast toast=Toast.makeText(LoginFragment.this.getActivity(), R.string.msg_wrongpassword, Toast.LENGTH_SHORT);
 						toast.setGravity(Gravity.CENTER, 0, 0);
 						toast.show();
 					}else{
@@ -71,6 +72,7 @@ public class PersonFragment extends CommonFragment{
 							if(user!=null){
 								ChatInfo.USER_ID=user.getId();
 								ChatInfo.USER_NICKNAME=user.getNickname();
+								ChatInfo.ISLOGIN=true;
 								Log.i("baby", user.toString());
 							}
 						} catch (JsonParseException e) {
@@ -83,8 +85,9 @@ public class PersonFragment extends CommonFragment{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						Intent intent=new Intent(PersonFragment.this.getActivity(),MainActivity.class);
-						PersonFragment.this.getActivity().startActivity(intent);
+						Intent intent=new Intent(LoginFragment.this.getActivity(),MainActivity.class);
+						LoginFragment.this.getActivity().finish();
+						LoginFragment.this.getActivity().startActivity(intent);
 					}
 				}
 			}
@@ -113,12 +116,12 @@ public class PersonFragment extends CommonFragment{
 				final String name=eUser.getText().toString();
 				final String password=ePass.getText().toString();
 				if("".equals(name)||"".equals(password)){
-					new AlertDialog.Builder(PersonFragment.this.getActivity()).setIcon(R.drawable.login_error)
+					new AlertDialog.Builder(LoginFragment.this.getActivity()).setIcon(R.drawable.login_error)
 					.setTitle(R.string.login_wrong_title).setMessage(R.string.login_wrong_des)
 					.create().show();
 					return ;
 				}
-				loadingDialog=BabyUtils.getLoadingDialog(PersonFragment.this.getActivity(),R.string.load_logining);
+				loadingDialog=BabyUtils.getLoadingDialog(LoginFragment.this.getActivity(),R.string.load_logining);
 				loadingDialog.show();
 				new Thread(){
 					public void run(){
@@ -142,9 +145,9 @@ public class PersonFragment extends CommonFragment{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(PersonFragment.this.getActivity(),RegisterActivity.class);
+				Intent intent=new Intent(LoginFragment.this.getActivity(),RegisterActivity.class);
 				//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				PersonFragment.this.getActivity().startActivity(intent);
+				LoginFragment.this.getActivity().startActivity(intent);
 				
 			}
 			

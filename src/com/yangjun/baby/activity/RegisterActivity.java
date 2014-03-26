@@ -76,7 +76,7 @@ public class RegisterActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.register);
 		initActionBar();
-		birthEdit=(EditText)this.findViewById(R.id.birthday);
+		birthEdit=(EditText)this.findViewById(R.id.person_edit_birthDay);
 		birthEdit.setOnFocusChangeListener(new OnFocusChangeListener() {  
 	        public void onFocusChange(View v, boolean hasFocus) {  
 	            if (hasFocus == true) {  
@@ -95,10 +95,10 @@ public class RegisterActivity extends SherlockActivity {
 			}
 			
 		});
-		emailE=(EditText)this.findViewById(R.id.email);
-		nicknameE=(EditText)this.findViewById(R.id.nickanme_re);
+		emailE=(EditText)this.findViewById(R.id.person_edit_email);
+		nicknameE=(EditText)this.findViewById(R.id.person_edit_nickname);
 		passwordE=(EditText)this.findViewById(R.id.password);
-		Button register=(Button)this.findViewById(R.id.register_btn);
+		Button register=(Button)this.findViewById(R.id.person_edit_saveBtn);
 		register.setOnClickListener(new Button.OnClickListener(){
 
 			@Override

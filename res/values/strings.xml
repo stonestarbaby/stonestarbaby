@@ -55,4 +55,7 @@
 	<string name="home">首页</string>
 	<string name="nav_fourm">圈子</string>
 	<string name="main_person">账户</string>
+	<string name="person_center">个人中心</string>
+	<string name="save">保存</string>
+	<string name="head">头像</string>
 </resources>

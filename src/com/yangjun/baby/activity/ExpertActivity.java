@@ -32,7 +32,7 @@ public class ExpertActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.forum_list);
 		adapter=new ExpertAdapter(ExpertActivity.this);
-		list=(PullToRefreshListView)this.findViewById(R.id.replyList);
+		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
 		list.setMode(PullToRefreshBase.Mode.BOTH);
 		new GetDataTask().execute();
 		list.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener2<ListView>(){

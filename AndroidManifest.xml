@@ -23,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.PersonActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        
         <activity android:name=".activity.LoginActivity"
             android:theme="@style/Anim_style"></activity>
         <activity android:name=".activity.LoginMainActivity"
@@ -30,7 +33,6 @@
         <activity android:name=".activity.WhatsNewActivity"
              android:theme="@style/Anim_style"></activity>
         <activity android:name=".activity.RegisterActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
          <activity android:name=".activity.ForumActivity"
              android:theme="@style/Anim_style"></activity>
          <activity android:name=".activity.PostActivity"

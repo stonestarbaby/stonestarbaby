@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.yangjun.baby.fragment.SettingsFragment;
 import com.yangjun.baby.fragment.HomeFragment;
-import com.yangjun.baby.fragment.PersonFragment;
+import com.yangjun.baby.fragment.LoginFragment;
 import android.content.Context;
 
 public class FragmentControlCenter {
@@ -74,7 +74,7 @@ public class FragmentControlCenter {
 			return fragmentModel;
 		}
 		public static FragmentModel  getPersonFragmentModel(){
-			PersonFragment fragment = new PersonFragment();
+			LoginFragment fragment = new LoginFragment();
 			FragmentModel fragmentModel = new FragmentModel(R.string.login_str,fragment);
 			return fragmentModel;
 		}

@@ -50,7 +50,7 @@ public class ReplyAdapter extends BabyBaseAdapter<ReplyEntity>{
     	}
     	public ImageView getHeadImg(){
     		if(null==this.headView){
-    			this.headView=(ImageView)this.baseView.findViewById(R.id.headImg);
+    			this.headView=(ImageView)this.baseView.findViewById(R.id.my_reply_headImg);
     			return this.headView;
     		}
     		return this.headView;
@@ -64,21 +64,21 @@ public class ReplyAdapter extends BabyBaseAdapter<ReplyEntity>{
     	}
     	public TextView getTimeText(){
     		if(null==this.timeText){
-    			this.timeText=(TextView)this.baseView.findViewById(R.id.time_r);
+    			this.timeText=(TextView)this.baseView.findViewById(R.id.my_reply_postTime);
     			return this.timeText;
     		}
     		return this.timeText;
     	}
     	public TextView getContentText(){
     		if(null==this.contentText){
-    			this.contentText=(TextView)this.baseView.findViewById(R.id.content_r);
+    			this.contentText=(TextView)this.baseView.findViewById(R.id.my_reply_nickname);
     			return this.contentText;
     		}
     		return this.contentText;
     	}
     	public TextView getFloorText(){
     		if(null==this.floorText){
-    			this.floorText=(TextView)this.baseView.findViewById(R.id.floor);
+    			this.floorText=(TextView)this.baseView.findViewById(R.id.my_reply_title);
     			return this.floorText;
     		}
     		return this.floorText;

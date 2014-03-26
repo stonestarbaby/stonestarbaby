@@ -38,7 +38,7 @@ public class PostActivity extends Activity{
 		post_id=getIntent().getStringExtra("post_id");
 		Log.i("baby","PostID:"+this.post_id);
 		postView=(TextView)this.findViewById(R.id.postContent);
-		list=(PullToRefreshListView)this.findViewById(R.id.replyList);
+		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
 		adapter=new ReplyAdapter(this);
 		list.setMode(PullToRefreshBase.Mode.BOTH);
 		new GetDataTask(this.post_id).execute();

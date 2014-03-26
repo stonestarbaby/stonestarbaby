@@ -31,7 +31,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/person_edit_email"
                 android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dip"
@@ -68,7 +68,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@+id/nickanme_re"
+                android:id="@+id/person_edit_nickname"
                 android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dip"
@@ -144,7 +144,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@+id/birthday"
+                android:id="@+id/person_edit_birthDay"
                 android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dip"
@@ -179,7 +179,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/register_btn"
+        android:id="@+id/person_edit_saveBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20.0dip"

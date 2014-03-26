@@ -80,7 +80,7 @@ public class LoginMainActivity extends Activity {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						Intent intent=new Intent(LoginMainActivity.this,MainActivity.class);
+						Intent intent=new Intent(LoginMainActivity.this,PersonActivity.class);
 						LoginMainActivity.this.startActivity(intent);
 					}
 				}
