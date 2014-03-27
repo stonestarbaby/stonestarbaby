@@ -17,12 +17,16 @@ import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ReplyAdapter;
 import com.yangjun.baby.entity.Forum;
 import com.yangjun.baby.entity.ReplyEntity;
+import com.yangjun.baby.ui.URLImageParser;
 import com.yangjun.baby.util.BabyUtils;
 import com.yangjun.baby.util.JSONUtils;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 public class PostActivity extends Activity{
@@ -30,6 +34,15 @@ public class PostActivity extends Activity{
 	private ReplyAdapter adapter;
 	private PullToRefreshListView list;
 	private String post_id;
+	public Handler handle=new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+		}
+		
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -48,7 +61,7 @@ public class PostActivity extends Activity{
 		ObjectMapper mapper=new ObjectMapper();
 		try {
 			Forum forum=JSONUtils.jsonNode2GenericObject(JSONUtils.getNode(result, "post"),  new TypeReference<Forum>(){});
-			postView.setText(forum.getContent());
+			postView.setText(Html.fromHtml(forum.getContent(), new URLImageParser(PostActivity.this,PostActivity.this.postView),null));
 			Log.i("baby", forum.toString());
 			JavaType javaType = JSONUtils.getCollectionType(LinkedList.class, ReplyEntity.class); 
 			LinkedList<ReplyEntity> replys =  (LinkedList<ReplyEntity>)mapper.readValue(JSONUtils.getNode(result, "replys"), javaType); 
