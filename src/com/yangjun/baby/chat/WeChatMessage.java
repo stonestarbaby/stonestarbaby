@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yangjun.baby.entity.MessageEntity;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 
 public class WeChatMessage{  
 	//定义3种布局类型  
@@ -43,7 +43,7 @@ public class WeChatMessage{
     	}
     	for(int i=0;i<msgs.length;i++){
     		MessageEntity ent=msgs[i];
-    		if(ent.getFromId().equals(ChatInfo.USER_ID)){
+    		if(ent.getFromId().equals(Infos.USER_ID)){
     			WeChatMessage wcm=new WeChatMessage(WeChatMessage.MessageType_To,ent.getContent());
     			res.add(wcm);
     		}else{

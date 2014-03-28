@@ -15,7 +15,7 @@ import com.yangjun.baby.activity.LoginMainActivity;
 import com.yangjun.baby.activity.PersonActivity;
 import com.yangjun.baby.activity.RegisterActivity;
 import com.yangjun.baby.constants.BabyConstants;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.User;
 import com.yangjun.baby.util.BabyUtils;
 
@@ -70,9 +70,10 @@ public class LoginFragment extends CommonFragment{
 						try {
 							User user=mapper.readValue(res, User.class);
 							if(user!=null){
-								ChatInfo.USER_ID=user.getId();
-								ChatInfo.USER_NICKNAME=user.getNickname();
-								ChatInfo.ISLOGIN=true;
+								Infos.user=user;
+								Infos.USER_ID=user.getId();
+								Infos.USER_NICKNAME=user.getNickname();
+								Infos.ISLOGIN=true;
 								Log.i("baby", user.toString());
 							}
 						} catch (JsonParseException e) {

@@ -8,7 +8,7 @@ import com.yangjun.baby.LogFactory;
 import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.activity.PersonActivity;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -83,7 +83,7 @@ public class NavigationFragment extends Fragment implements OnCheckedChangeListe
 		// TODO Auto-generated method stub
 		super.onResume();
 		RadioButton account=(RadioButton)mView.findViewById(R.id.nav_person);
-		if(ChatInfo.ISLOGIN){
+		if(Infos.ISLOGIN){
 			account.setText("ÒÑµÇÂ¼");
 		}else{
 			account.setText("Î´µÇÂ¼");
@@ -122,7 +122,7 @@ public class NavigationFragment extends Fragment implements OnCheckedChangeListe
 		FragmentModel fragmentModel = mControlCenter.getPersonFragmentModel();
 		if (getActivity() instanceof MainActivity) {
 			MainActivity ra = (MainActivity) getActivity();
-			if(!ChatInfo.ISLOGIN){
+			if(!Infos.ISLOGIN){
 				ra.switchContent(fragmentModel);
 			}else{
 				Intent intent=new Intent(ra,PersonActivity.class);

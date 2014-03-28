@@ -10,7 +10,7 @@ import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.entity.User;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.util.BabyUtils;
 
 import android.annotation.SuppressLint;
@@ -66,8 +66,8 @@ public class LoginMainActivity extends Activity {
 						try {
 							User user=mapper.readValue(res, User.class);
 							if(user!=null){
-								ChatInfo.USER_ID=user.getId();
-								ChatInfo.USER_NICKNAME=user.getNickname();
+								Infos.USER_ID=user.getId();
+								Infos.USER_NICKNAME=user.getNickname();
 								Log.i("baby", user.toString());
 							}
 						} catch (JsonParseException e) {

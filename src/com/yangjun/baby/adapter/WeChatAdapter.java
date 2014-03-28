@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.yangjun.baby.R;
 import com.yangjun.baby.chat.WeChatMessage;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 
 import android.content.Context;  
 import android.view.LayoutInflater;  
@@ -57,14 +57,14 @@ public class WeChatAdapter extends BaseAdapter{
                    content=(TextView)mView.findViewById(R.id.chat_content_left);  
                    content.setText(mData.get(Index).getContent());
                    nickname=(TextView)mView.findViewById(R.id.tv_username);  
-                   nickname.setText(ChatInfo.EXPERT_NICKNAME);  
+                   nickname.setText(Infos.EXPERT_NICKNAME);  
                    break;  
                case WeChatMessage.MessageType_To:  
                    mView=LayoutInflater.from(mContext).inflate(R.layout.chatting_item_msg_text_right, null);  
                    content=(TextView)mView.findViewById(R.id.chat_content_right);  
                    content.setText(mData.get(Index).getContent());
                    nickname=(TextView)mView.findViewById(R.id.tv_username);  
-                   nickname.setText(ChatInfo.USER_NICKNAME);
+                   nickname.setText(Infos.USER_NICKNAME);
                    break;  
             }   
         return mView;  

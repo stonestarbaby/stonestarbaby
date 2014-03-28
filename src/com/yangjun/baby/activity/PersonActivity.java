@@ -61,7 +61,7 @@ class FragmentFactory {
                 fragment = new PersonReplyFragment();
                 break;
             case R.id.tab_message:
-                fragment = new HomeFragment();
+                fragment = new PersonEditFragment();
                 break;
         }
         return fragment;

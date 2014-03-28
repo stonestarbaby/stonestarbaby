@@ -11,6 +11,8 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -36,16 +38,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-public class ForumActivity extends Activity{
+public class ForumActivity extends SherlockActivity{
 	private PullToRefreshListView list;
 	private ForumAdapter adapter;
 	private int page=0;
 	private boolean isFirstLoading = true;
+	private TextView mTitleTextView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.forum_list);
+		initActionBar();
 		adapter=new ForumAdapter(ForumActivity.this);
 		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
 		list.setMode(PullToRefreshBase.Mode.BOTH);
@@ -101,6 +105,13 @@ public class ForumActivity extends Activity{
 			data.add(item); 
 		}
 		return data;
+	}
+	private void initActionBar(){
+		ActionBar actionBar = this.getSupportActionBar();
+		actionBar.setCustomView(R.layout.actionbar_title);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		mTitleTextView = (TextView) findViewById(R.id.tv_title);
+		mTitleTextView.setText(R.string.nav_fourm);
 	}
 	private void updateAdapter(String result){
 		ObjectMapper mapper=new ObjectMapper();

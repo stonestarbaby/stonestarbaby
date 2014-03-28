@@ -40,7 +40,8 @@ public class BabyUtils {
 	public static String EXPERT_LIST_URL=BASE_URL+"app/expert_list.php";
 	public static String CHAT_SEND_URL=BASE_URL+"app/chat_send.php";
 	public static String CHAT_GET_URL=BASE_URL+"app/chat_get.php";
-	
+	public static String PERSON_POST_LIST_URL=BASE_URL+"app/person_post_list.php";
+	public static String PERSON_REPLY_LIST_URL=BASE_URL+"app/person_reply_list.php";
 	public static String getMGetResult(String handleurl,Map<String,String> map){
 		int res = 0;
 	    HttpClient client = new DefaultHttpClient();
@@ -72,6 +73,7 @@ public class BabyUtils {
 		}catch(Exception io){
 			return "";
 		}
+	    Log.i("baby", str.toString());
 	    return str.toString();
 	}
 	

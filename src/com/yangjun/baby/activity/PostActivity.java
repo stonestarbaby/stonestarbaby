@@ -11,6 +11,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.yangjun.baby.R;
@@ -29,11 +31,13 @@ import android.os.Message;
 import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
-public class PostActivity extends Activity{
+public class PostActivity extends SherlockActivity{
 	private TextView  postView;
 	private ReplyAdapter adapter;
 	private PullToRefreshListView list;
+	private TextView mTitleTextView;
 	private String post_id;
+	
 	public Handler handle=new Handler(){
 
 		@Override
@@ -48,6 +52,7 @@ public class PostActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.post_main);
+		initActionBar();
 		post_id=getIntent().getStringExtra("post_id");
 		Log.i("baby","PostID:"+this.post_id);
 		postView=(TextView)this.findViewById(R.id.postContent);
@@ -55,6 +60,13 @@ public class PostActivity extends Activity{
 		adapter=new ReplyAdapter(this);
 		list.setMode(PullToRefreshBase.Mode.BOTH);
 		new GetDataTask(this.post_id).execute();
+	}
+	private void initActionBar(){
+		ActionBar actionBar = this.getSupportActionBar();
+		actionBar.setCustomView(R.layout.actionbar_title);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		mTitleTextView = (TextView) findViewById(R.id.tv_title);
+		mTitleTextView.setText(R.string.title_post);
 	}
 	private void updateAdapter(String result){
 		Log.i("baby", "updateAdapter");

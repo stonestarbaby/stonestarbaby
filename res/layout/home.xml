@@ -15,7 +15,7 @@
          >
 
         <ImageView
-            android:id="@+id/my_reply_headImg"
+            android:id="@+id/person_reply_headImg"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="fitXY"

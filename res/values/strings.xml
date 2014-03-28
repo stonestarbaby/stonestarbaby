@@ -58,4 +58,5 @@
 	<string name="person_center">个人中心</string>
 	<string name="save">保存</string>
 	<string name="head">头像</string>
+	<string name="title_post">帖子详情</string>
 </resources>

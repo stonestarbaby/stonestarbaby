@@ -18,11 +18,16 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.yangjun.baby.util.ImageDownloader.FlushedInputStream;
+
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.http.AndroidHttpClient;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Display;
 
 public class TextViewImageUtils {
 		public static ImageDownListener listener;
@@ -165,5 +170,13 @@ public class TextViewImageUtils {
 	        }
 	        listener.imageDownComplement(url);
 	        return bit;
+	    }
+	    public static Rect getDefaultImageBounds(Context context) {
+	        Display display = ((Activity)context).getWindowManager().getDefaultDisplay();
+	        int width = display.getWidth();
+	        int height = (int) (width * 9 / 16);
+	                    
+	        Rect bounds = new Rect(0, 0, width, height);
+	        return bounds;
 	    }
 }

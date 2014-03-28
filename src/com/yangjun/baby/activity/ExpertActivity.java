@@ -10,7 +10,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ExpertAdapter;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.ExpertEntity;
 import com.yangjun.baby.util.BabyUtils;
 import android.app.Activity;
@@ -63,8 +63,8 @@ public class ExpertActivity extends Activity{
 					long arg3) {
 				Log.i("chat", "index:"+index);
 				ExpertEntity ent=adapter.getItem(index-1);
-				ChatInfo.EXPERT_ID=ent.getExpertId();
-				ChatInfo.EXPERT_NICKNAME=ent.getName();
+				Infos.EXPERT_ID=ent.getExpertId();
+				Infos.EXPERT_NICKNAME=ent.getName();
 				ExpertActivity.this.startActivity(new Intent(ExpertActivity.this,WeChatActivity.class));
 			}
 			

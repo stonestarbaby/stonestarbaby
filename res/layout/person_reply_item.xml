@@ -15,10 +15,18 @@
         android:padding="5dp" >
 
         <ImageView
-            android:id="@+id/my_reply_headImg"
+            android:id="@+id/person_reply_headImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_head_default" />
+
+        <TextView
+            android:id="@+id/person_reply_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/person_reply_headImg"
+            android:text="你好啊" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -31,25 +39,17 @@
         android:padding="5dp" >
 
         <TextView
-            android:id="@+id/my_reply_title"
+            android:id="@+id/person_reply_postTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/person_reply_postTime"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="1楼" />
 
         <TextView
-            android:id="@+id/my_reply_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/my_reply_title"
-            android:layout_toLeftOf="@+id/my_reply_postTime"
-            android:text="你好啊" />
-
-        <TextView
-            android:id="@+id/my_reply_postTime"
+            android:id="@+id/person_reply_postTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -66,20 +66,11 @@
         android:padding="5dp" >
 
         <TextView
-            android:id="@+id/my_reply_replycontent"
+            android:id="@+id/person_reply_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="left"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/my_reply_replyTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="right"
             android:text="TextView" />
 
     </RelativeLayout>

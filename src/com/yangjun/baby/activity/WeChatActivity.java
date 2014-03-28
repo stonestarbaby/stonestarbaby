@@ -22,7 +22,7 @@ import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.entity.Forum;
 import com.yangjun.baby.entity.MessageEntity;
 import com.yangjun.baby.entity.User;
-import com.yangjun.baby.entity.ChatInfo;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.util.BabyUtils;
 
 import android.os.Bundle;  
@@ -157,8 +157,8 @@ public class WeChatActivity extends Activity {
         	new Thread(){
 				public void run(){
 					Map<String,String> map=new HashMap<String,String>();
-					map.put("from_id", ChatInfo.USER_ID);
-					map.put("to_id", ChatInfo.EXPERT_ID);
+					map.put("from_id", Infos.USER_ID);
+					map.put("to_id", Infos.EXPERT_ID);
 					try {
 						map.put("content", URLEncoder.encode(InputBox.getText().toString(),"UTF-8"));
 						map.put("lastdated", URLEncoder.encode(WeChatMessage.LAST_DATED,"UTF-8"));
@@ -184,8 +184,8 @@ public class WeChatActivity extends Activity {
         	new Thread(){
 				public void run(){
 					Map<String,String> map=new HashMap<String,String>();
-					map.put("from_id", ChatInfo.USER_ID);
-					map.put("to_id", ChatInfo.EXPERT_ID);
+					map.put("from_id", Infos.USER_ID);
+					map.put("to_id", Infos.EXPERT_ID);
 					try {
 						map.put("lastdated", URLEncoder.encode(WeChatMessage.LAST_DATED,"UTF-8"));
 					} catch (UnsupportedEncodingException e) {
