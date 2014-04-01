@@ -37,6 +37,9 @@ public class BabyUtils {
 	private static String REGISTER_URL=BASE_URL+"app/register.php";
 	private static String POST_LIST_URL=BASE_URL+"app/post_list.php";
 	private static String POST_DETAIL_URL=BASE_URL+"app/post_detail.php";
+	public static String POST_REPLY_URL=BASE_URL+"app/reply.php";
+	public static String POST_REPLY_LIST_URL=BASE_URL+"app/reply_list.php";
+	public static String POST_NEW_URL=BASE_URL+"app/post_new.php";
 	public static String EXPERT_LIST_URL=BASE_URL+"app/expert_list.php";
 	public static String CHAT_SEND_URL=BASE_URL+"app/chat_send.php";
 	public static String CHAT_GET_URL=BASE_URL+"app/chat_get.php";
@@ -140,6 +143,35 @@ public class BabyUtils {
 	    try {
 	        HttpResponse httpRes = client.execute(httpGet);
 	        httpRes = client.execute(httpGet);
+	        res = httpRes.getStatusLine().getStatusCode();
+	        if(res == 200){
+	            BufferedReader buffer = new BufferedReader(new InputStreamReader(httpRes.getEntity().getContent()));
+	            for(String s = buffer.readLine(); s != null ; s = buffer.readLine()) {
+	            	str.append(s);
+	            }
+	        }else{
+	        	return "";
+	        }   
+		}catch(Exception io){
+			return "";
+		}
+	    return str.toString();
+	}
+	private static String[] POST_ARR_NAME={"user_id","title","content"};
+	public static String postNew(String[] strArr){
+		int res = 0;
+	    HttpClient client = new DefaultHttpClient();
+	    StringBuilder str = new StringBuilder();
+	    HttpPost httpPost= new HttpPost(POST_NEW_URL);
+	    List<NameValuePair> params = new ArrayList<NameValuePair>();  
+	    for(int i=0;i<POST_ARR_NAME.length;i++){
+	    	 params.add(new BasicNameValuePair(POST_ARR_NAME[i],strArr[i]));
+	    }
+	   
+	    try {
+	    	httpPost.setEntity(new UrlEncodedFormEntity(params)); 
+	        HttpResponse httpRes = client.execute(httpPost);
+	        httpRes = client.execute(httpPost);
 	        res = httpRes.getStatusLine().getStatusCode();
 	        if(res == 200){
 	            BufferedReader buffer = new BufferedReader(new InputStreamReader(httpRes.getEntity().getContent()));

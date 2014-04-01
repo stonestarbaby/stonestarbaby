@@ -21,7 +21,7 @@
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             </intent-filter>
         </activity>
         <activity android:name=".activity.PersonActivity"></activity>
         <activity android:name=".MainActivity"></activity>
@@ -35,9 +35,13 @@
         <activity android:name=".activity.RegisterActivity"></activity>
          <activity android:name=".activity.ForumActivity"></activity>
          <activity android:name=".activity.PostActivity"></activity>
+         <activity android:name=".activity.PostNewActivity"></activity>
          <activity android:name=".activity.ExpertActivity"
              android:theme="@style/Anim_style"></activity>
          <activity android:name=".activity.WeChatActivity"
              android:theme="@style/Anim_style"></activity>
+         <activity android:name=".ui.PullToRefreshListActivity">
+             
+         </activity>
     </application>
 </manifest>

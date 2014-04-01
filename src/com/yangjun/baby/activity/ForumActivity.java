@@ -19,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.extras.SoundPullEventListener;
+import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ForumAdapter;
 import com.yangjun.baby.constants.BabyConstants;
@@ -35,6 +36,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,28 +54,21 @@ public class ForumActivity extends SherlockActivity{
 		initActionBar();
 		adapter=new ForumAdapter(ForumActivity.this);
 		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
-		list.setMode(PullToRefreshBase.Mode.BOTH);
-		new GetDataTask().execute();
-		list.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener2<ListView>(){
-
+		list.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+		list.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener<ListView>(){
 			@Override
-			public void onPullDownToRefresh(PullToRefreshBase<ListView> arg0) {
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
 				// TODO Auto-generated method stub
-				if(page<0){
-					page=0;
-				}else{
-					page--;
-					new GetDataTask().execute();;
-				}
-			}
-
-			@Override
-			public void onPullUpToRefresh(PullToRefreshBase<ListView> arg0) {
+				Log.i("pull","onPullUpToRefresh");
 				// TODO Auto-generated method stub
+				String str = DateUtils.formatDateTime(ForumActivity.this, System.currentTimeMillis(), DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_NO_NOON);
+				list.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+		        list.getLoadingLayoutProxy().setPullLabel("上拉加载更多");
+		        list.getLoadingLayoutProxy().setReleaseLabel("释放开始加载");
+		        refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后加载时间:" + str); 
 				page++;
 				new GetDataTask().execute();
 			}
-			
 		});
 		list.setOnItemClickListener( new ListView.OnItemClickListener(){
 
@@ -90,6 +85,7 @@ public class ForumActivity extends SherlockActivity{
 			}
 			
 		});
+		new GetDataTask().execute();
 	}
 	public List<Map<String, Object>> getData(){
 		List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
@@ -108,10 +104,34 @@ public class ForumActivity extends SherlockActivity{
 	}
 	private void initActionBar(){
 		ActionBar actionBar = this.getSupportActionBar();
-		actionBar.setCustomView(R.layout.actionbar_title);
+		actionBar.setCustomView(R.layout.actionbar_new);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		mTitleTextView = (TextView) findViewById(R.id.tv_title);
 		mTitleTextView.setText(R.string.nav_fourm);
+		ImageView back=(ImageView)this.findViewById(R.id.iv_left_icon);
+		back.setOnClickListener(new ImageView.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				 Intent localIntent = new Intent(ForumActivity.this, MainActivity.class);
+				 localIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				 ForumActivity.this.startActivity(localIntent);
+			}
+			
+		});
+		ImageView newBtn=(ImageView)this.findViewById(R.id.iv_right_icon);
+		newBtn.setOnClickListener(new ImageView.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				 Intent localIntent = new Intent(ForumActivity.this, PostNewActivity.class);
+				
+				 ForumActivity.this.startActivity(localIntent);
+			}
+			
+		});
 	}
 	private void updateAdapter(String result){
 		ObjectMapper mapper=new ObjectMapper();
@@ -125,6 +145,11 @@ public class ForumActivity extends SherlockActivity{
 			//adapter=new ForumAdapter(ForumActivity.this);
 			adapter.clear();
 			adapter.setMultitermDataToFooter(forumsList);
+		    ListView mlist = list.getRefreshableView();  
+		    if (!(mlist).isStackFromBottom()) {  
+		        mlist.setStackFromBottom(true);  
+		    }  
+		    mlist.setStackFromBottom(false);  
 			list.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
 			list.onRefreshComplete();

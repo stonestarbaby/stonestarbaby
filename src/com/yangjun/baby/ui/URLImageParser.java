@@ -104,6 +104,8 @@ public class URLImageParser implements ImageGetter {
                     	urlDrawable.setBounds(result.getBounds());
                         urlDrawable.drawable = result;
                         URLImageParser.this.textView.invalidate();
+                        //URLImageParser.this.textView.setHeight(URLImageParser.this.textView.getHeight()+result.getIntrinsicHeight());
+                        //URLImageParser.this.textView.setEllipsize(null);
                     }
             }
 

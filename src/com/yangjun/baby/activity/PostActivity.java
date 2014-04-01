@@ -2,8 +2,10 @@ package com.yangjun.baby.activity;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -15,28 +17,37 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ReplyAdapter;
 import com.yangjun.baby.entity.Forum;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.ReplyEntity;
 import com.yangjun.baby.ui.URLImageParser;
 import com.yangjun.baby.util.BabyUtils;
 import com.yangjun.baby.util.JSONUtils;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 public class PostActivity extends SherlockActivity{
-	private TextView  postView;
+	private TextView  postView,replyView;
 	private ReplyAdapter adapter;
 	private PullToRefreshListView list;
 	private TextView mTitleTextView;
 	private String post_id;
+	private int page=1;
 	
 	public Handler handle=new Handler(){
 
@@ -56,24 +67,68 @@ public class PostActivity extends SherlockActivity{
 		post_id=getIntent().getStringExtra("post_id");
 		Log.i("baby","PostID:"+this.post_id);
 		postView=(TextView)this.findViewById(R.id.postContent);
-		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
+		replyView=(TextView)this.findViewById(R.id.post_reply_textView);
 		adapter=new ReplyAdapter(this);
-		list.setMode(PullToRefreshBase.Mode.BOTH);
-		new GetDataTask(this.post_id).execute();
+		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
+		list.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+		list.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener<ListView>(){
+			@Override
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+				Log.i("pull","onPullUpToRefresh");
+				// TODO Auto-generated method stub
+				String str = DateUtils.formatDateTime(PostActivity.this, System.currentTimeMillis(), DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_NO_NOON);
+				list.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+		        list.getLoadingLayoutProxy().setPullLabel("上拉加载更多");
+		        list.getLoadingLayoutProxy().setReleaseLabel("释放开始加载");
+		        refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后加载时间:" + str); 
+				page++;
+				new GetDataListTask(post_id).execute();
+			}
+		});
+		Button replyBtn=(Button)this.findViewById(R.id.post_replyBtn);
+		replyBtn.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				String content=replyView.getText().toString();
+				if(!content.equals("")){
+					new GetDataTask(post_id).execute();
+				}
+			}
+			
+		});
+		new GetDetailDataTask(this.post_id).execute();
 	}
 	private void initActionBar(){
 		ActionBar actionBar = this.getSupportActionBar();
-		actionBar.setCustomView(R.layout.actionbar_title);
+		actionBar.setCustomView(R.layout.actionbar_back);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		mTitleTextView = (TextView) findViewById(R.id.tv_title);
 		mTitleTextView.setText(R.string.title_post);
+		ImageView back=(ImageView)this.findViewById(R.id.iv_left_icon);
+		back.setOnClickListener(new ImageView.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(PostActivity.this,MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				PostActivity.this.finish();
+				PostActivity.this.startActivity(intent);
+			}
+			
+		});
 	}
-	private void updateAdapter(String result){
+	private void updateDetail(String result){
 		Log.i("baby", "updateAdapter");
 		ObjectMapper mapper=new ObjectMapper();
 		try {
 			Forum forum=JSONUtils.jsonNode2GenericObject(JSONUtils.getNode(result, "post"),  new TypeReference<Forum>(){});
-			postView.setText(Html.fromHtml(forum.getContent(), new URLImageParser(PostActivity.this,PostActivity.this.postView),null));
+			Log.i("baby", forum.getContent().replace("</br>", "\n"));
+			String html="<h1>this is h1</h1><p>This text is normal</p><img src='https://www.google.com.hk/intl/zh-CN/images/logo_cn.png' />";
+			postView.setText(Html.fromHtml(html, new URLImageParser(PostActivity.this,PostActivity.this.postView),null));
 			Log.i("baby", forum.toString());
 			JavaType javaType = JSONUtils.getCollectionType(LinkedList.class, ReplyEntity.class); 
 			LinkedList<ReplyEntity> replys =  (LinkedList<ReplyEntity>)mapper.readValue(JSONUtils.getNode(result, "replys"), javaType); 
@@ -81,6 +136,49 @@ public class PostActivity extends SherlockActivity{
 			//adapter=new ForumAdapter(ForumActivity.this);
 			adapter.clear();
 			adapter.setMultitermDataToFooter(replys);
+			list.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+			list.onRefreshComplete();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private void updateListAdapter(String result){
+		Log.i("baby", "updateAdapter");
+		ObjectMapper mapper=new ObjectMapper();
+		try {
+			ReplyEntity[] forums=mapper.readValue(result,ReplyEntity[].class);
+			//adapter=new ForumAdapter(ForumActivity.this);
+			List<ReplyEntity> forumsList=Arrays.asList(forums);
+			adapter.setMultitermDataToFooter(forumsList);
+			list.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+			list.onRefreshComplete();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private void updateAdapter(String result){
+		Log.i("baby", "updateAdapter");
+		ObjectMapper mapper=new ObjectMapper();
+		try {
+			ReplyEntity forums=mapper.readValue(result,ReplyEntity.class);
+			//adapter=new ForumAdapter(ForumActivity.this);
+			adapter.setDataFirst(forums);
 			list.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
 			list.onRefreshComplete();
@@ -103,6 +201,49 @@ public class PostActivity extends SherlockActivity{
 		@Override
 		protected String doInBackground(Void... params) {
 			// Simulates a background job.
+			Map<String,String> map=new HashMap<String,String>();
+			map.put("user_id", Infos.USER_ID);
+			map.put("post_id",postid);
+			map.put("content",replyView.getText().toString());
+			String res=BabyUtils.getMGetResult(BabyUtils.POST_REPLY_URL, map);
+			return res;
+		}
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			updateAdapter(result);
+		}
+	}
+	private class GetDataListTask extends AsyncTask<Void, Void, String> {
+		private String postid;
+		public GetDataListTask(String postid){
+			this.postid=postid;
+		}
+		@Override
+		protected String doInBackground(Void... params) {
+			// Simulates a background job.
+			Map<String,String> map=new HashMap<String,String>();
+			map.put("post_id",postid);
+			map.put("page",page+"");
+			page++;
+			String res=BabyUtils.getMGetResult(BabyUtils.PERSON_REPLY_LIST_URL, map);
+			return res;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			updateListAdapter(result);
+		}
+	}
+	private class GetDetailDataTask extends AsyncTask<Void, Void, String> {
+		private String postid;
+		public GetDetailDataTask(String postid){
+			this.postid=postid;
+		}
+		@Override
+		protected String doInBackground(Void... params) {
+			// Simulates a background job.
 			String res=BabyUtils.getPostDetailResult(this.postid);
 			return res;
 		}
@@ -110,7 +251,7 @@ public class PostActivity extends SherlockActivity{
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
-			updateAdapter(result);
+			updateDetail(result);
 		}
 	}
 }

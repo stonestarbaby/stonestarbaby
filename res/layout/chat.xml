@@ -42,7 +42,7 @@
         android:padding="5dp" >
   
         <EditText
-            android:id="@+id/InputBox"
+            android:id="@+id/post_reply_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -54,7 +54,7 @@
         </EditText>  
 
         <Button
-            android:id="@+id/BtnSend"
+            android:id="@+id/post_replyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

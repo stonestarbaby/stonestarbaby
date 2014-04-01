@@ -108,8 +108,8 @@ public class WeChatActivity extends Activity {
         mAdapter=new WeChatAdapter(this, mData);  
         mListView.setAdapter(mAdapter);  
         mListView.smoothScrollToPositionFromTop(mData.size(), 0);  
-        InputBox=(EditText)findViewById(R.id.InputBox);  
-        BtnSend=(Button)findViewById(R.id.BtnSend);  
+        InputBox=(EditText)findViewById(R.id.post_reply_textView);  
+        BtnSend=(Button)findViewById(R.id.post_replyBtn);  
         BtnSend.setOnClickListener(new OnClickListener(){  
             @Override  
             public void onClick(View view){  

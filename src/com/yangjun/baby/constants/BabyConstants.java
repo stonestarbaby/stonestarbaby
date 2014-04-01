@@ -6,11 +6,13 @@ public class BabyConstants {
 	public static int TYPE_POST_LIST=1;
 	public static int TYPE_CHAT=2;
 	public static int TYPE_REGISTER=3;
+	public static int TYPE_POST_NEW=4;
 	
 	public static String BUN_H_LOGIN="login";
 	public static String BUN_H_POST_LIST="BUN_H_POST_LIST";
 	public static String BUN_H_CHAT_SEND="BUN_H_CHAT_SEND";
 	public static String BUN_H_REGISTER="BUN_H_REGISTER";
+	public static String BUN_H__POST_NEW="login";
 	
 	public static String MSG_NONAME="NONAME";
 	public static String MSG_NAMEEXIST="NAMEEXIST";

@@ -25,6 +25,7 @@
 	        android:ems="10"
 	        android:hint="@string/login_des"
 	        android:padding="10dp"
+	        android:text="yj@qq.com"
 	        android:textSize="20sp" >
 	
 	        <requestFocus />
@@ -34,20 +35,23 @@
 		      android:layout_height="1.0px"
 		      android:layout_below="@+id/user_name"
 		       />
+
 	    <EditText
 	        android:id="@+id/nickname"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	         android:layout_marginLeft="20dp"
+	        android:layout_below="@+id/user_name"
+	        android:layout_marginLeft="20dp"
 	        android:layout_marginRight="20dp"
 	        android:layout_marginTop="10dp"
+	        android:background="@android:color/white"
 	        android:ems="10"
-	        android:layout_below="@+id/user_name"
 	        android:hint="@string/pass_hint"
 	        android:inputType="textPassword"
 	        android:padding="10dp"
-	        android:background="@android:color/white"
+	        android:text="yj123456"
 	        android:textSize="20sp" />
+
 	</RelativeLayout>
 
 	<Button
