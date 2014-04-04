@@ -123,7 +123,7 @@ public class LoginFragment extends CommonFragment{
 					}else{
 						String[] arr=res.split(",");
 						if(arr.length==2){
-							Infos.USER_ID=arr[1];
+							Infos.EXPERT_ID=arr[1];
 							Infos.CHAT_INFO_ID=arr[0];
 							Infos.main.startActivity(new Intent(Infos.main,WeChatActivity.class));
 							return ;
