@@ -5,7 +5,7 @@ import java.net.URL;
 import com.yangjun.baby.R;
 import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.util.ImageDownListener;
-import com.yangjun.baby.util.TextViewImageUtils;
+import com.yangjun.baby.util.ImageUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -62,7 +62,7 @@ public class EmojiTextView extends TextView{
 			if(!source.startsWith("http")){
 				source=BabyConstants.URL_BASE+source;
 			}
-			Bitmap bit=TextViewImageUtils.getBitmapFromCache(source);
+			Bitmap bit=ImageUtils.getBitmapFromCache(source);
 			if(bit==null){
 				 Drawable drawable=null;
 				 drawable=getResources().getDrawable(R.drawable.welcome);

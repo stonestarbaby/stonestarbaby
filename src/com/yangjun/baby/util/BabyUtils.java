@@ -41,10 +41,13 @@ public class BabyUtils {
 	public static String POST_REPLY_LIST_URL=BASE_URL+"app/reply_list.php";
 	public static String POST_NEW_URL=BASE_URL+"app/post_new.php";
 	public static String EXPERT_LIST_URL=BASE_URL+"app/expert_list.php";
+	public static String EXPERT_NEW_CHAT_URL=BASE_URL+"app/new_chat.php";
+	public static String EXPERT_NEW_CHAT_EXIST_URL=BASE_URL+"app/new_chat_exist.php";
 	public static String CHAT_SEND_URL=BASE_URL+"app/chat_send.php";
 	public static String CHAT_GET_URL=BASE_URL+"app/chat_get.php";
 	public static String PERSON_POST_LIST_URL=BASE_URL+"app/person_post_list.php";
 	public static String PERSON_REPLY_LIST_URL=BASE_URL+"app/person_reply_list.php";
+	public static String UPLAOD_IAMGE_URL=BASE_URL+"app/upload_image.php";
 	public static String getMGetResult(String handleurl,Map<String,String> map){
 		int res = 0;
 	    HttpClient client = new DefaultHttpClient();

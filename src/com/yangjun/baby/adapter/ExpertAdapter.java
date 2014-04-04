@@ -5,6 +5,7 @@ import com.yangjun.baby.entity.ExpertEntity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ExpertAdapter extends BabyBaseAdapter<ExpertEntity>{
@@ -26,7 +27,8 @@ public class ExpertAdapter extends BabyBaseAdapter<ExpertEntity>{
     		
     		TextView score=forumCache.getScoreText();
     		score.setText(expert.getScoreAve()+"/"+expert.getScoreSum());
-    		
+    		ImageView image=forumCache.getImage();
+    		image.setImageResource(expert.getImageId());
     		return convertView;
     	}
 		return convertView;
@@ -36,6 +38,7 @@ public class ExpertAdapter extends BabyBaseAdapter<ExpertEntity>{
     	private TextView name;
     	private TextView description;
     	private TextView score;
+    	private ImageView image;
     	public ExpertItemViewCache(View view){
     		this.baseView=view;
     	}
@@ -45,6 +48,13 @@ public class ExpertAdapter extends BabyBaseAdapter<ExpertEntity>{
     			return this.name;
     		}
     		return this.name;
+    	}
+    	public ImageView getImage(){
+    		if(null==this.image){
+    			this.image=(ImageView)this.baseView.findViewById(R.id.expertImage);
+    			return this.image;
+    		}
+    		return this.image;
     	}
     	public TextView getDescriptionText(){
     		if(null==this.description){

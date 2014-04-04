@@ -6,13 +6,15 @@ public class User {
 	private String nickname;
 	private String headImg;
 	private String birthDay;
+	private String isExpert;
+	public String getIsExpert() {
+		return isExpert;
+	}
+	public void setIsExpert(String isExpert) {
+		this.isExpert = isExpert;
+	}
 	public User(){
 		
-	}
-	public User(String id,String username,String nickname){
-		this.id=id;
-		this.username=username;
-		this.nickname=nickname;
 	}
 	public String getId() {
 		return id;

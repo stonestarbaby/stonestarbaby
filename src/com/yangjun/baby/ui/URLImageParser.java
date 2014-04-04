@@ -85,7 +85,7 @@ public class URLImageParser implements ImageGetter {
                                                     entity.getContent(), null, options);
                                     //Bitmap bitmap = BitmapFactory.decodeStream(entity.getContent());
                                     drawable = new BitmapDrawable(bitmap);
-                                    drawable.setBounds(0,0, drawable.getIntrinsicWidth(),
+                                    drawable.setBounds(0,URLImageParser.this.textView.getHeight(), drawable.getIntrinsicWidth(),
                                                     drawable.getIntrinsicHeight());
                             }
                     } catch (ClientProtocolException e) {
@@ -104,8 +104,8 @@ public class URLImageParser implements ImageGetter {
                     	urlDrawable.setBounds(result.getBounds());
                         urlDrawable.drawable = result;
                         URLImageParser.this.textView.invalidate();
-                        //URLImageParser.this.textView.setHeight(URLImageParser.this.textView.getHeight()+result.getIntrinsicHeight());
-                        //URLImageParser.this.textView.setEllipsize(null);
+                        URLImageParser.this.textView.setHeight(URLImageParser.this.textView.getHeight()+result.getIntrinsicHeight());
+                        URLImageParser.this.textView.setEllipsize(null);
                     }
             }
 

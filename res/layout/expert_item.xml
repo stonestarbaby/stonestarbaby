@@ -7,21 +7,17 @@
     android:orientation="horizontal"
     android:padding="5dp" >
 
-    <TextView
-        android:id="@+id/expertName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/black" />
+    <ImageView
+        android:id="@+id/expertImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/expert_off" />
 
     <TextView
         android:id="@+id/expertDes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/expertName"
+        android:layout_alignLeft="@+id/expertImage"
         android:layout_below="@+id/expertName"
         android:gravity="left"
         android:padding="5dp"
@@ -36,5 +32,16 @@
         android:layout_alignTop="@+id/expertName"
         android:gravity="center"
         android:text="4.5/1000" />
+
+    <TextView
+        android:id="@+id/expertName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/expertImage"
+        android:layout_alignTop="@+id/expertImage"
+        android:layout_toRightOf="@+id/expertImage"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black" />
 
 </RelativeLayout>

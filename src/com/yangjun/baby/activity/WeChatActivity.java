@@ -44,14 +44,13 @@ import android.widget.EditText;
 import android.widget.ListView;  
 import android.widget.Toast;
   
-@SuppressLint("NewApi")
 public class WeChatActivity extends Activity {  
   
     private Button BtnSend;  
     private EditText InputBox;  
     private List<WeChatMessage> mData;  
     private WeChatAdapter mAdapter;
-    private  ListView mListView;
+    private ListView mListView;
     private Thread getMThread;
     private boolean isMessage=true;
     private boolean issending=false;
@@ -91,7 +90,7 @@ public class WeChatActivity extends Activity {
 	                //关闭输入法  
 	                imm.hideSoftInputFromWindow(null, InputMethodManager.HIDE_IMPLICIT_ONLY);  
 	                //滚动列表到当前消息  
-	                mListView.smoothScrollToPositionFromTop(mData.size(), 0);  
+	                mListView.smoothScrollToPosition(mData.size());  
 				}
 			}
 		}
@@ -107,7 +106,7 @@ public class WeChatActivity extends Activity {
         mData=LoadData();  
         mAdapter=new WeChatAdapter(this, mData);  
         mListView.setAdapter(mAdapter);  
-        mListView.smoothScrollToPositionFromTop(mData.size(), 0);  
+        mListView.smoothScrollToPosition(mData.size());  
         InputBox=(EditText)findViewById(R.id.post_reply_textView);  
         BtnSend=(Button)findViewById(R.id.post_replyBtn);  
         BtnSend.setOnClickListener(new OnClickListener(){  

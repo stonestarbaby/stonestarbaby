@@ -89,7 +89,11 @@ public class BabyBaseAdapter<T> extends BaseAdapter{
 			this.mListItems.add(paramT);
 		}
   	}
-
+	public void setDataPostion(int index,T paramT){
+		if (paramT != null){
+			this.mListItems.add(index,paramT);
+		}
+  	}
 	public void setData(List<T> paramList){
 		if (paramList != null){
 			this.mListItems.addAll(paramList);

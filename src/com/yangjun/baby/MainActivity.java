@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.fragment.NavigationFragment;
 /**
  * 
@@ -32,13 +33,19 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	
 	private FragmentControlCenter mControlCenter;
 	
+	public FragmentControlCenter getmControlCenter() {
+		return mControlCenter;
+	}
+
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		mControlCenter = FragmentControlCenter.getInstance(this);
-		
+		Infos.main=this;
 		setupViews();
 		
 		initData();
@@ -90,8 +97,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private void initData(){
 		
 	}
-	
-	
 	public void switchContent(final FragmentModel fragment) {
 		mTitle = fragment.mTitle;
 		mContent = fragment.mFragment;

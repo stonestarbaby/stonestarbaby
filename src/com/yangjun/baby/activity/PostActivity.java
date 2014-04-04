@@ -17,27 +17,24 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ReplyAdapter;
 import com.yangjun.baby.entity.Forum;
 import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.ReplyEntity;
-import com.yangjun.baby.ui.URLImageParser;
 import com.yangjun.baby.util.BabyUtils;
 import com.yangjun.baby.util.JSONUtils;
+import com.yangjun.baby.util.UIUtils;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +44,7 @@ public class PostActivity extends SherlockActivity{
 	private PullToRefreshListView list;
 	private TextView mTitleTextView;
 	private String post_id;
+	private String content;
 	private int page=1;
 	
 	public Handler handle=new Handler(){
@@ -66,7 +64,7 @@ public class PostActivity extends SherlockActivity{
 		initActionBar();
 		post_id=getIntent().getStringExtra("post_id");
 		Log.i("baby","PostID:"+this.post_id);
-		postView=(TextView)this.findViewById(R.id.postContent);
+		//postView=(TextView)this.findViewById(R.id.postContent);
 		replyView=(TextView)this.findViewById(R.id.post_reply_textView);
 		adapter=new ReplyAdapter(this);
 		list=(PullToRefreshListView)this.findViewById(R.id.person_replyList);
@@ -113,7 +111,7 @@ public class PostActivity extends SherlockActivity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(PostActivity.this,MainActivity.class);
+				Intent intent=new Intent(PostActivity.this,ForumActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				PostActivity.this.finish();
 				PostActivity.this.startActivity(intent);
@@ -126,17 +124,21 @@ public class PostActivity extends SherlockActivity{
 		ObjectMapper mapper=new ObjectMapper();
 		try {
 			Forum forum=JSONUtils.jsonNode2GenericObject(JSONUtils.getNode(result, "post"),  new TypeReference<Forum>(){});
-			Log.i("baby", forum.getContent().replace("</br>", "\n"));
 			String html="<h1>this is h1</h1><p>This text is normal</p><img src='https://www.google.com.hk/intl/zh-CN/images/logo_cn.png' />";
-			postView.setText(Html.fromHtml(html, new URLImageParser(PostActivity.this,PostActivity.this.postView),null));
+			content=forum.getContent();
+			//postView.setText(Html.fromHtml(forum.getContent(), new URLImageParser(PostActivity.this,PostActivity.this.postView),null));
 			Log.i("baby", forum.toString());
 			JavaType javaType = JSONUtils.getCollectionType(LinkedList.class, ReplyEntity.class); 
 			LinkedList<ReplyEntity> replys =  (LinkedList<ReplyEntity>)mapper.readValue(JSONUtils.getNode(result, "replys"), javaType); 
 			Log.i("baby", "Length:"+replys.size());
 			//adapter=new ForumAdapter(ForumActivity.this);
+			ReplyEntity text=new ReplyEntity();
+			text.setContent(content);
 			adapter.clear();
+			adapter.setDataFirst(text);
 			adapter.setMultitermDataToFooter(replys);
 			list.setAdapter(adapter);
+			//UIUtils.setListViewHeightBasedOnChildren(list.getRefreshableView());
 			adapter.notifyDataSetChanged();
 			list.onRefreshComplete();
 		} catch (JsonParseException e) {
@@ -159,6 +161,7 @@ public class PostActivity extends SherlockActivity{
 			List<ReplyEntity> forumsList=Arrays.asList(forums);
 			adapter.setMultitermDataToFooter(forumsList);
 			list.setAdapter(adapter);
+			//UIUtils.setListViewHeightBasedOnChildren(list.getRefreshableView());
 			adapter.notifyDataSetChanged();
 			list.onRefreshComplete();
 		} catch (JsonParseException e) {
@@ -178,8 +181,9 @@ public class PostActivity extends SherlockActivity{
 		try {
 			ReplyEntity forums=mapper.readValue(result,ReplyEntity.class);
 			//adapter=new ForumAdapter(ForumActivity.this);
-			adapter.setDataFirst(forums);
+			adapter.setDataLast(forums);
 			list.setAdapter(adapter);
+			//UIUtils.setListViewHeightBasedOnChildren(list.getRefreshableView());
 			adapter.notifyDataSetChanged();
 			list.onRefreshComplete();
 		} catch (JsonParseException e) {

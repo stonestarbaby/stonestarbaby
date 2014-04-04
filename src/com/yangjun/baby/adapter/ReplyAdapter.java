@@ -1,9 +1,12 @@
 package com.yangjun.baby.adapter;
 
 import com.yangjun.baby.R;
+import com.yangjun.baby.activity.PostActivity;
 import com.yangjun.baby.entity.ReplyEntity;
+import com.yangjun.baby.ui.URLImageParser;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +18,11 @@ public class ReplyAdapter extends BabyBaseAdapter<ReplyEntity>{
     }
     public View getView(int position, View convertView, ViewGroup parent) {
     	final ReplyEntity reply=this.getItem(position);
+    	if(position==0){
+    		TextView text=new TextView(mContext);
+    		text.setText(Html.fromHtml(reply.getContent(), new URLImageParser(mContext,text),null));
+    		return text;
+    	}
     	ReplyItemViewCache forumCache;
     	if(null==convertView){
     		convertView = mInflater.inflate(R.layout.reply_item, null);

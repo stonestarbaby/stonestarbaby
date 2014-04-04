@@ -1,7 +1,7 @@
 package com.yangjun.baby.ui;
 
 import com.yangjun.baby.R;
-import com.yangjun.baby.util.TextViewImageUtils;
+import com.yangjun.baby.util.ImageUtils;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,10 +13,10 @@ public class URLDrawable extends BitmapDrawable {
     protected Drawable drawable;
                    
     public URLDrawable(Context context) {
-        this.setBounds(TextViewImageUtils.getDefaultImageBounds(context));
+        this.setBounds(ImageUtils.getDefaultImageBounds(context));
                        
         drawable = context.getResources().getDrawable(R.drawable.welcome);
-        drawable.setBounds(TextViewImageUtils.getDefaultImageBounds(context));
+        drawable.setBounds(ImageUtils.getDefaultImageBounds(context));
     }
                    
     @Override

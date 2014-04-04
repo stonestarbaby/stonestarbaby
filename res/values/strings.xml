@@ -67,4 +67,6 @@
 	<string name="post_new_contening">正在发表</string>
 	<string name="post_new_wrong_title">发帖失败</string>
 	<string name="post_new_wrong_des">标题和内容不能为空，请填写完整再发表。</string>
+	<string name="loginout">注销登录</string>
+	<string name="newchating">建立会话 </string>
 </resources>

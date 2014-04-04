@@ -23,24 +23,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
         </activity>
-        <activity android:name=".activity.PersonActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".activity.PersonActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/MySherlockTheme"></activity>
         
         <activity android:name=".activity.LoginActivity"
-            android:theme="@style/Anim_style"></activity>
+            android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.LoginMainActivity"
-             android:theme="@style/Anim_style"></activity>
+             android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.WhatsNewActivity"
-             android:theme="@style/Anim_style"></activity>
-        <activity android:name=".activity.RegisterActivity"></activity>
-         <activity android:name=".activity.ForumActivity"></activity>
-         <activity android:name=".activity.PostActivity"></activity>
-         <activity android:name=".activity.PostNewActivity"></activity>
-         <activity android:name=".activity.ExpertActivity"
-             android:theme="@style/Anim_style"></activity>
-         <activity android:name=".activity.WeChatActivity"
-             android:theme="@style/Anim_style"></activity>
-         <activity android:name=".ui.PullToRefreshListActivity">
+             android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.ForumActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.PostActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.PostNewActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.ExpertActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.WeChatActivity"
+            android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".ui.PullToRefreshListActivity">
              
          </activity>
     </application>

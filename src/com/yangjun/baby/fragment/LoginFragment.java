@@ -2,6 +2,10 @@ package com.yangjun.baby.fragment;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -11,14 +15,18 @@ import com.yangjun.baby.CommonLog;
 import com.yangjun.baby.LogFactory;
 import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
+import com.yangjun.baby.activity.ExpertActivity;
 import com.yangjun.baby.activity.LoginMainActivity;
 import com.yangjun.baby.activity.PersonActivity;
 import com.yangjun.baby.activity.RegisterActivity;
+import com.yangjun.baby.activity.WeChatActivity;
+import com.yangjun.baby.chat.WeChatMessage;
 import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.User;
 import com.yangjun.baby.util.BabyUtils;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,6 +82,10 @@ public class LoginFragment extends CommonFragment{
 								Infos.USER_ID=user.getId();
 								Infos.USER_NICKNAME=user.getNickname();
 								Infos.ISLOGIN=true;
+								if(user.getIsExpert().equals("1")){
+									listenChat();
+									Infos.EXPERT_ID=Infos.USER_ID;
+								}
 								Log.i("baby", user.toString());
 							}
 						} catch (JsonParseException e) {
@@ -95,6 +107,39 @@ public class LoginFragment extends CommonFragment{
 		}
 		
 	};
+	private void listenChat(){
+		Log.i("baby", "start");
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Map<String,String> map=new HashMap<String,String>();
+				map.put("expert_id",Infos.user.getId());
+				while(true){
+					String res=BabyUtils.getMGetResult(BabyUtils.EXPERT_NEW_CHAT_EXIST_URL, map);
+					if(res.equals("FAIL")){
+						
+					}else{
+						String[] arr=res.split(",");
+						if(arr.length==2){
+							Infos.USER_ID=arr[1];
+							Infos.CHAT_INFO_ID=arr[0];
+							Infos.main.startActivity(new Intent(Infos.main,WeChatActivity.class));
+							return ;
+						}
+					}
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+        	
+        }).start();
+    }  
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		log.e("PersonFragment onCreate");

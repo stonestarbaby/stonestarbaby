@@ -29,7 +29,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.Display;
 
-public class TextViewImageUtils {
+public class ImageUtils {
 		public static ImageDownListener listener;
 		private static final String LOG_TAG = "TextViewImage";
 	 	private static final int HARD_CACHE_CAPACITY = 10;
