@@ -25,20 +25,20 @@
         <RadioButton
             android:id="@+id/tab_person"
             style="@style/weibo_tab"
-            android:drawableTop="@drawable/weibolist_atme_selector"
-            android:text="\@我" />
+            android:drawableTop="@drawable/weibolist_mylist_selector"
+            android:text="@string/person_info" />
 
         <RadioButton
             android:id="@+id/tab_post"
             style="@style/weibo_tab"
-            android:drawableTop="@drawable/weibolist_comment_selector"
-            android:text="评论" />
+            android:drawableTop="@drawable/weibolist_global_selector"
+            android:text="@string/person_post" />
 
         <RadioButton
             android:id="@+id/tab_reply"
             style="@style/weibo_tab"
-            android:drawableTop="@drawable/weibolist_mylist_selector"
-            android:text="我的" />
+            android:drawableTop="@drawable/weibolist_comment_selector"
+            android:text="@string/pesron_reply" />
 
         <RadioButton
             android:id="@+id/tab_message"

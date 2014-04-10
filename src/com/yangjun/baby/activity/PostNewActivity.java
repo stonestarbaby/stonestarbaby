@@ -56,7 +56,7 @@ public class PostNewActivity extends SherlockActivity {
 	private EditTextImage contentT;
 	private TextView mTitleTextView;
 	private AlertDialog loadingDialog;
-	private AsyncHttpClient client = new AsyncHttpClient(); ;
+	private AsyncHttpClient client = new AsyncHttpClient();
 	private Handler handler=new Handler(){
 
 		@Override

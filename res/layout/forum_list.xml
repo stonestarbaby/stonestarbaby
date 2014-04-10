@@ -4,23 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/bisque"
     android:orientation="vertical" >
-
-	<LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-
-    	<TextView
-    	    android:id="@+id/header_title"
-    	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
-    	    android:background="@drawable/quanzi_title_bg"
-    	    android:paddingBottom="5.0dip"
-    	    android:paddingLeft="5.0dip"
-    	    android:paddingTop="5.0dip"
-    	    android:text="@string/nav_fourm"
-    	    android:textColor="#ff222222"
-    	    android:textSize="16.0sp" />
-
-	</LinearLayout>
-
 	<com.handmark.pulltorefresh.library.PullToRefreshListView
 	    android:id="@+id/person_replyList"
 	    android:layout_width="match_parent"

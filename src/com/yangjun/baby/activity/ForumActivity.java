@@ -24,6 +24,7 @@ import com.yangjun.baby.R;
 import com.yangjun.baby.adapter.ForumAdapter;
 import com.yangjun.baby.constants.BabyConstants;
 import com.yangjun.baby.entity.Forum;
+import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.entity.ReplyEntity;
 import com.yangjun.baby.util.BabyUtils;
 import android.app.Activity;
@@ -126,9 +127,10 @@ public class ForumActivity extends SherlockActivity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				 Intent localIntent = new Intent(ForumActivity.this, PostNewActivity.class);
-				
-				 ForumActivity.this.startActivity(localIntent);
+				if(Infos.user!=null){
+					Intent localIntent = new Intent(ForumActivity.this, PostNewActivity.class);
+					ForumActivity.this.startActivity(localIntent);
+				}
 			}
 			
 		});

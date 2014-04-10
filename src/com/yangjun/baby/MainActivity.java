@@ -30,9 +30,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	
 	private ImageView mLeftIcon;
 	private TextView mTitleTextView;
-	
 	private FragmentControlCenter mControlCenter;
-	
+	private FragmentModel personfragmentModel;
 	public FragmentControlCenter getmControlCenter() {
 		return mControlCenter;
 	}
@@ -45,6 +44,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		super.onCreate(savedInstanceState);
 		
 		mControlCenter = FragmentControlCenter.getInstance(this);
+		personfragmentModel = mControlCenter.getPersonFragmentModel();
 		Infos.main=this;
 		setupViews();
 		
@@ -97,7 +97,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private void initData(){
 		
 	}
-	public void switchContent(final FragmentModel fragment) {
+	public void switchContent(FragmentModel fragment) {
+		if(fragment==null){
+			fragment=this.personfragmentModel;
+		}
 		mTitle = fragment.mTitle;
 		mContent = fragment.mFragment;
 
@@ -114,7 +117,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		
 		mTitleTextView.setText(mTitle);
 	}
-
 
 
 	@Override

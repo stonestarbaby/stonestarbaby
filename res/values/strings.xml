@@ -69,4 +69,7 @@
 	<string name="post_new_wrong_des">标题和内容不能为空，请填写完整再发表。</string>
 	<string name="loginout">注销登录</string>
 	<string name="newchating">建立会话 </string>
+	<string name="person_info">资料</string>
+	<string name="person_post">帖子</string>
+	<string name="pesron_reply">回复</string>
 </resources>

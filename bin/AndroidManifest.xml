@@ -44,6 +44,8 @@
             android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.ExpertActivity"
             android:theme="@style/MySherlockTheme"></activity>
+        <activity android:name=".activity.MoodActivity"
+            android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.WeChatActivity"
             android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".ui.PullToRefreshListActivity">

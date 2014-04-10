@@ -48,6 +48,7 @@ public class BabyUtils {
 	public static String PERSON_POST_LIST_URL=BASE_URL+"app/person_post_list.php";
 	public static String PERSON_REPLY_LIST_URL=BASE_URL+"app/person_reply_list.php";
 	public static String UPLAOD_IAMGE_URL=BASE_URL+"app/upload_image.php";
+	public static String MOOD_LIST_URL=BASE_URL+"app/mood_list.php";
 	public static String getMGetResult(String handleurl,Map<String,String> map){
 		int res = 0;
 	    HttpClient client = new DefaultHttpClient();

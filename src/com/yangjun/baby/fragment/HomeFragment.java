@@ -2,9 +2,12 @@ package com.yangjun.baby.fragment;
 
 import com.yangjun.baby.CommonLog;
 import com.yangjun.baby.LogFactory;
+import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.activity.ExpertActivity;
 import com.yangjun.baby.activity.ForumActivity;
+import com.yangjun.baby.activity.MoodActivity;
+import com.yangjun.baby.entity.Infos;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ public class HomeFragment extends CommonFragment{
 	private TextView fourmItem;
 	private TextView expertItem;
 	private TextView shareItem;
+	private TextView moodItem;
 	private static final CommonLog log = LogFactory.createLog();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,11 @@ public class HomeFragment extends CommonFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(HomeFragment.this.getActivity(),ExpertActivity.class);
-				HomeFragment.this.getActivity().startActivity(intent);
+				boolean noLogin=goToLogin();
+				if(!noLogin){
+					Intent intent=new Intent(HomeFragment.this.getActivity(),ExpertActivity.class);
+					HomeFragment.this.getActivity().startActivity(intent);
+				}
 			}
 		});
 		shareItem=(TextView)view.findViewById(R.id.home_activity_share);
@@ -62,6 +69,18 @@ public class HomeFragment extends CommonFragment{
                 startActivity(Intent.createChooser(intent, HomeFragment.this.getString(R.string.shareSel)));  
             }  
 		});
+		moodItem=(TextView)view.findViewById(R.id.home_activity_motion);
+		moodItem.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v){  
+				boolean noLogin=goToLogin();
+				if(!noLogin){
+					Intent intent=new Intent(HomeFragment.this.getActivity(),MoodActivity.class);
+					HomeFragment.this.getActivity().startActivity(intent);
+				}
+            }  
+		});
 		return view;
 	}
 	
@@ -72,7 +91,14 @@ public class HomeFragment extends CommonFragment{
 		
 		setupViews();
 	}
-	
+	private boolean goToLogin(){
+		if(Infos.user==null){
+			MainActivity main=(MainActivity)this.getActivity();
+			main.switchContent(null);
+			return true;
+		}
+		return false;
+	}
 	private void setupViews(){
 	        
 	}
