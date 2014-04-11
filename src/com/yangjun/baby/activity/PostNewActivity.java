@@ -2,35 +2,19 @@ package com.yangjun.baby.activity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.apache.http.HttpVersion;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreProtocolPNames;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.yangjun.baby.MainActivity;
 import com.yangjun.baby.R;
 import com.yangjun.baby.constants.BabyConstants;
-import com.yangjun.baby.entity.User;
 import com.yangjun.baby.entity.Infos;
 import com.yangjun.baby.ui.EditTextImage;
 import com.yangjun.baby.util.BabyUtils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -40,9 +24,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,7 +88,7 @@ public class PostNewActivity extends SherlockActivity {
 				// TODO Auto-generated method stub
 				final String title=titleT.getText().toString();
 				final String content=contentT.getText().toString();
-				Log.i("baby", content);
+				Log.i("post", "Content:"+content);
 				if("".equals(title)||"".equals(content)){
 					new AlertDialog.Builder(PostNewActivity.this).setIcon(R.drawable.login_error)
 					.setTitle(R.string.post_new_wrong_title).setMessage(R.string.post_new_wrong_des)
@@ -119,8 +101,7 @@ public class PostNewActivity extends SherlockActivity {
 					public void run(){
 						String[] strArr=new String[]{Infos.USER_ID,title,content};
 						String res=BabyUtils.postNew(strArr);
-						System.out.println("Baby:"+res);
-						Log.i("baby", res);
+						Log.i("POSTNEW", title);
 						Message msg=new Message();
 						msg.what=BabyConstants.TYPE_POST_NEW;
 						Bundle bun=new Bundle();
@@ -194,7 +175,7 @@ public class PostNewActivity extends SherlockActivity {
             @Override  
             public void onSuccess(int arg0, String url) {  
                 super.onSuccess(arg0, url);
-                Drawable d=Drawable.createFromPath(path1);
+                Drawable d=Drawable.createFromPath(path);
                 contentT.insertDrawable(url, d);
             }  
         });  

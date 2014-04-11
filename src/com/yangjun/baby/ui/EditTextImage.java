@@ -16,10 +16,10 @@ public class EditTextImage extends EditText {
         super(context, attrs);
     }
 	public void insertDrawable(String url,Drawable d) {
-		String imgStr="<p><img src='"+url+"' /></p>";
+		String imgStr="<p><img src='"+url+"' /></p>\n\n";
 		final SpannableString ss = new SpannableString(imgStr);
 		//得到drawable对象，即所要插入的图片
-		d.setBounds(0, this.getLineCount()*this.getLineHeight(), this.getWidth(), d.getIntrinsicHeight());
+		d.setBounds(30, this.getLineCount()*this.getLineHeight(), this.getWidth()-60, d.getIntrinsicHeight());
 		//用这个drawable对象代替字符串easy
 		ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BOTTOM);
 		//包括0但是不包括"easy".length()即：4。[0,4)。值得注意的是当我们复制这个图片的时候，实际是复制了"easy"这个字符串。

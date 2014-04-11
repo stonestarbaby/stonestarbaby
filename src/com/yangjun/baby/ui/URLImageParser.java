@@ -11,6 +11,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.yangjun.baby.R;
 import com.yangjun.baby.constants.BabyConstants;
+import com.yangjun.baby.util.ImageCacheUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,14 +34,29 @@ public class URLImageParser implements ImageGetter {
     }
     @Override
     public Drawable getDrawable(String source) {
-    		URLDrawable drawable=new URLDrawable(context);
+			if(source==null){
+				return null;
+			}
+    		URLDrawable urldrawable=new URLDrawable(context,this.textView.getHeight());
     		if(source.startsWith("http://localhost/bbs/")){
     			Log.d("post", "http://localhost/bbs/");
     			source=source.replace("http://localhost/bbs/", BabyConstants.URL_BASE);
     		}
-            new RssImageLoader(drawable).execute(source);
+    		Bitmap bitmap=ImageCacheUtils.getBitmapFromCache(source);
+    		if(bitmap!=null){
+    			 Log.d("post", "BitMap Exist");
+    			 Drawable drawable = new BitmapDrawable(bitmap);
+                 drawable.setBounds(0,this.textView.getHeight(), drawable.getIntrinsicWidth(),
+                                 drawable.getIntrinsicHeight());
+                 urldrawable.drawable=drawable;
+    		}else{
+    			new RssImageLoader(urldrawable).execute(source);
+    		}
+    		 URLImageParser.this.textView.invalidate();
+             URLImageParser.this.textView.setHeight(URLImageParser.this.textView.getHeight()+urldrawable.drawable.getIntrinsicHeight());
+             URLImageParser.this.textView.setEllipsize(null);
             Log.d("***img_uri***", source);
-            return drawable;
+            return urldrawable;
     }
     class RssImageLoader extends AsyncTask<String, Void, Drawable> {
 
@@ -71,8 +87,7 @@ public class URLImageParser implements ImageGetter {
                                     final int REQUIRED_SIZE = 250;
                                     int scale = 1; // Ëõ·ÅµÄ±¶Êý
                                     while (true) {
-                                            if (imgWidth / 2 < REQUIRED_SIZE
-                                                            || imgHeight / 2 < REQUIRED_SIZE) {
+                                            if (imgWidth / 2 < REQUIRED_SIZE) {
                                                     break;
                                             }
                                             imgWidth /= 2;
@@ -83,6 +98,7 @@ public class URLImageParser implements ImageGetter {
                                     options.inJustDecodeBounds = false;
                                     Bitmap bitmap = BitmapFactory.decodeStream(
                                                     entity.getContent(), null, options);
+                                    ImageCacheUtils.addBitmapToCache(uri, bitmap);
                                     //Bitmap bitmap = BitmapFactory.decodeStream(entity.getContent());
                                     drawable = new BitmapDrawable(bitmap);
                                     drawable.setBounds(0,URLImageParser.this.textView.getHeight(), drawable.getIntrinsicWidth(),
@@ -101,6 +117,7 @@ public class URLImageParser implements ImageGetter {
             protected void onPostExecute(Drawable result) {
                     super.onPostExecute(result);
                     if (result != null) {
+                    	 Log.d("post", "BitMap Task");
                     	urlDrawable.setBounds(result.getBounds());
                         urlDrawable.drawable = result;
                         URLImageParser.this.textView.invalidate();

@@ -102,7 +102,7 @@ public class MoodActivity extends SherlockActivity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				 Intent localIntent = new Intent(MoodActivity.this, PostNewActivity.class);
+				 Intent localIntent = new Intent(MoodActivity.this, MoodNewActivity.class);
 				
 				 MoodActivity.this.startActivity(localIntent);
 			}

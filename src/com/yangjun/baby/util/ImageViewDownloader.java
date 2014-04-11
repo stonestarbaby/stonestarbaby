@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * A local cache of downloaded images is maintained internally to improve performance.
  */
-public class ImageDownloader {
+public class ImageViewDownloader {
     private static final String LOG_TAG = "ImageDownloader";
 
     public enum Mode { NO_ASYNC_TASK, NO_DOWNLOADED_DRAWABLE, CORRECT }

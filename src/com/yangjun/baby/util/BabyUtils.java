@@ -2,7 +2,6 @@ package com.yangjun.baby.util;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,8 +20,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.yangjun.baby.R;
-import com.yangjun.baby.activity.LoginMainActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.util.Log;
@@ -49,6 +46,7 @@ public class BabyUtils {
 	public static String PERSON_REPLY_LIST_URL=BASE_URL+"app/person_reply_list.php";
 	public static String UPLAOD_IAMGE_URL=BASE_URL+"app/upload_image.php";
 	public static String MOOD_LIST_URL=BASE_URL+"app/mood_list.php";
+	public static String MOOD_NEW_URL=BASE_URL+"app/mood_new.php";
 	public static String getMGetResult(String handleurl,Map<String,String> map){
 		int res = 0;
 	    HttpClient client = new DefaultHttpClient();
@@ -173,7 +171,36 @@ public class BabyUtils {
 	    }
 	   
 	    try {
-	    	httpPost.setEntity(new UrlEncodedFormEntity(params)); 
+	    	httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8")); 
+	        HttpResponse httpRes = client.execute(httpPost);
+	        httpRes = client.execute(httpPost);
+	        res = httpRes.getStatusLine().getStatusCode();
+	        if(res == 200){
+	            BufferedReader buffer = new BufferedReader(new InputStreamReader(httpRes.getEntity().getContent()));
+	            for(String s = buffer.readLine(); s != null ; s = buffer.readLine()) {
+	            	str.append(s);
+	            }
+	        }else{
+	        	return "";
+	        }   
+		}catch(Exception io){
+			return "";
+		}
+	    return str.toString();
+	}
+	private static String[] MOOD_ARR_NAME={"user_id","type","content"};
+	public static String moodNew(String[] strArr){
+		int res = 0;
+	    HttpClient client = new DefaultHttpClient();
+	    StringBuilder str = new StringBuilder();
+	    HttpPost httpPost= new HttpPost(MOOD_NEW_URL);
+	    List<NameValuePair> params = new ArrayList<NameValuePair>();  
+	    for(int i=0;i<MOOD_ARR_NAME.length;i++){
+	    	 params.add(new BasicNameValuePair(MOOD_ARR_NAME[i],strArr[i]));
+	    }
+	   
+	    try {
+	    	httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8")); 
 	        HttpResponse httpRes = client.execute(httpPost);
 	        httpRes = client.execute(httpPost);
 	        res = httpRes.getStatusLine().getStatusCode();

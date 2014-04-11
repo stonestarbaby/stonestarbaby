@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/mood_new_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.yangjun.baby.ui.EditTextImage
+        android:id="@+id/mood_new_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="0.68"
+        android:background="@drawable/shape_bg"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/post_new_contenthint"
+        android:inputType="textMultiLine"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/mood_new_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="5dp"
+        android:text="还能输入200字"
+        android:textColor="@color/tomato"
+        android:textSize="20sp" />
+
+</LinearLayout>

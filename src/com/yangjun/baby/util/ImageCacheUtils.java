@@ -17,7 +17,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.yangjun.baby.util.ImageDownloader.FlushedInputStream;
+import com.yangjun.baby.util.ImageViewDownloader.FlushedInputStream;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,9 +29,8 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.Display;
 
-public class ImageUtils {
-		public static ImageDownListener listener;
-		private static final String LOG_TAG = "TextViewImage";
+public class ImageCacheUtils {
+		private static final String LOG_TAG = "CacheImage";
 	 	private static final int HARD_CACHE_CAPACITY = 10;
 	    private static final int DELAY_BEFORE_PURGE = 10 * 1000; // in milliseconds
 	    public final static String ALBUM_PATH  
@@ -168,15 +167,13 @@ public class ImageUtils {
 	                ((AndroidHttpClient) client).close();
 	            }
 	        }
-	        listener.imageDownComplement(url);
 	        return bit;
 	    }
-	    public static Rect getDefaultImageBounds(Context context) {
+	    public static Rect getDefaultImageBounds(Context context,int top) {
 	        Display display = ((Activity)context).getWindowManager().getDefaultDisplay();
-	        int width = display.getWidth();
-	        int height = (int) (width * 9 / 16);
-	                    
-	        Rect bounds = new Rect(0, 0, width, height);
+	        int width = display.getWidth()-60;
+	        int height =width;            
+	        Rect bounds = new Rect(30, top, width, height);
 	        return bounds;
 	    }
 }

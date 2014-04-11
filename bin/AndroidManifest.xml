@@ -42,6 +42,8 @@
             android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.PostNewActivity"
             android:theme="@style/MySherlockTheme"></activity>
+         <activity android:name=".activity.MoodNewActivity"
+            android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.ExpertActivity"
             android:theme="@style/MySherlockTheme"></activity>
         <activity android:name=".activity.MoodActivity"
